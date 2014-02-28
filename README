@@ -1,0 +1,49 @@
+
+This is not the official PayJunction API. At the time of creating this api PayJunction did not have an library api in PHP. So check of updates from http://developer.payjunction.com/. It's always safe to use PayJunction API if they have one.
+
+= Installation
+
+Obtain the latest version of the PayJunction api with:
+
+    git clone https://github.com/biju1984/payjunction_api.git
+
+To get started, add the following to your PHP script:
+
+    require_once("/path/to/api/payjunction_api.php");
+
+Simple usage looks like:
+
+	$payjunction = new PayJunctionApi($username,$password,$api_key,$test_mode);
+
+	Eg: $payjunction = new PayJunctionApi('pj-ql-01','pj-ql-01p','53ced679-c314-418e-99ec-d302370cfbe5',true); 
+
+	// API key, username & password is obtained from PayJunction upon registration.
+
+	For processing transaction and getting JSON response:
+
+	$response = $payjunction->processTransaction($fields,$transaction_id,$request);
+
+	Eg: $fields = array(
+			'cardNumber' => ''
+			'cardExpMonth' => ''
+			'cardExpYear' => ''
+			'billingAddress' => ''
+			'billingCountry' =>  ''
+			'billingState' => ''
+			'billingZip' => ''
+			'billingFirstName' => ''
+			'billingLastName' => ''
+			'cardCvv' => ''
+			'amountBase' => ''
+		); // Fill in the values. 
+
+		$transaction_id = null / 123455; // By default null
+		$request = "POST"/"GET"/"PUT" // By default POST
+		$response is a JSON string which has to be parsed.
+
+		For more information on request parameters visit PayJunction Developer Documentation
+    
+
+= Documentation
+
+Please see http://developer.payjunction.com/ for up-to-date documentation.
